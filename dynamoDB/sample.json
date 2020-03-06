@@ -1,0 +1,14 @@
+[
+  {
+    "name" : "Different asset",
+    "version" : 1,
+    "author"  : "John Doe",
+    "area"  : "animation",
+    "tags"  : ["animation","solo"],
+    "date_created" : "2020-03-05 00:00:00Z",
+    "last_updated" : "2020-03-05 00:00:00Z",
+    "path" : "fake_url",
+    "screenshot_path"  : "fake_screenshot_url"
+
+  }
+]
