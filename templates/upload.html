@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title> Asset list </title>
+{% endblock %}
+
+{% block body %}
+<div class="jumbotron">
+      <div class="col-sm-8 mx-auto">
+        <h2>Create asset</h2>
+          <form action="/assets/upload" method="post" enctype="multipart/form-data" novalidate>
+              {{ form.hidden_tag() }}
+              <div class="form-group">
+                <label for="name">{{form.name.label}}</label>
+                  {{form.name(size=32, class_="form-control")}}
+                  {% for error in form.name.errors %}
+                    <span style="color: red;">[{{ error }}]</span>
+                  {% endfor %}
+              </div>
+              <div class="form-group">
+                <label for="author_name">{{form.author_name.label}}</label>
+                  {{form.author_name(size=32, class_="form-control")}}
+                  {% for error in form.author_name.errors %}
+                    <span style="color: red;">[{{ error }}]</span>
+                  {% endfor %}
+              </div>
+                            <div class="form-group">
+                <label for="area">{{form.area.label}}</label>
+                  {{form.area(class_="form-control")}}
+                  {% for error in form.area.errors %}
+                    <span style="color: red;">[{{ error }}]</span>
+                  {% endfor %}
+              </div>
+              <div class="form-group">
+                <label for="screenshot_file">{{form.screenshot_file.label}}</label>
+                  {{form.screenshot_file(class_="form-control")}}
+                  {% for error in form.screenshot_file.errors %}
+                    <span style="color: red;">[{{ error }}]</span>
+                  {% endfor %}
+              </div>
+              <div class="form-group">
+                <label for="asset_file">{{form.asset_file.label}}</label>
+                  {{form.asset_file(class_="form-control")}}
+                  {% for error in form.asset_file.errors %}
+                    <span style="color: red;">[{{ error }}]</span>
+                  {% endfor %}
+              </div>
+              <div class="form-group">
+                <label for="tags">{{form.tags.label}}</label>
+                  {{form.tags(size=100)}}
+                  {% for error in form.tags.errors %}
+                    <span style="color: red;">[{{ error }}]</span>
+                  {% endfor %}
+              </div>
+              <div>{{form.submit}}</div>
+          </form>
+      </div>
+</div>
+{% endblock %}

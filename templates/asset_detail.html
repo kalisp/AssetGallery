@@ -10,7 +10,7 @@
     <div class="row mb-3">
         <div class="col-6 col-md-4">
             {% if asset.screenshot_path %}
-                <img src="{{url_for('static', filename='butterfly.jpg')}}" class="rounded img-thumbnail" />
+                <img src="{{asset.screenshot_path}}" class="rounded img-thumbnail" />
             {% endif %}
         </div>
         <div class="col-md-8">
@@ -18,7 +18,7 @@
                 <li class="list-group-item"><b>Name : </b>{{asset['name']}}</li>
                 <li class="list-group-item"><b>Author : </b>{{asset['author']}}</li>
                 <li class="list-group-item"><b>Version : </b>{{asset['version']}}</li>
-                <li class="list-group-item"><b>S3 : </b>{{asset['path']}}</li>
+                <li class="list-group-item"><b>S3 : </b><a href="{{asset['asset_path']}}">{{asset['asset_path']}}</a></li>
                 <li class="list-group-item"><b>Tags : </b>{{tag_imgs(asset['tags'])}}</li>
             </ul>
         </div>
@@ -29,6 +29,6 @@
 
 {% macro tag_imgs(tags) -%}
     {% for tag in tags %}
-        <a href="/assets/tag/{{tag}}" class="btn btn-dark" role="button" aria-disabled="true">{{tag}}</a>
+        <a href="/assets/tag/{{tag.strip()}}" class="btn btn-dark" role="button" aria-disabled="true">{{tag}}</a>
     {% endfor %}
 {%- endmacro %}

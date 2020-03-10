@@ -10,8 +10,8 @@
         <div class="row mb-3">
             {% for asset in assets: %}
                 <div class="col-4 themed-grid-col">
-                    {% if asset.screenshot_path %}
-                        <img src="{{url_for('static', filename='butterfly.jpg')}}" class="rounded img-thumbnail" />
+                    {% if asset.screenshot_path and asset.screenshot_path != 'fake_screenshot_url' %}
+                        <img src="{{asset.screenshot_path}}" class="rounded img-thumbnail" />
                     {% endif %}
                     <div style="text-align:center" ><a href="/assets/detail/{{asset.id}}">{{asset.name}}</a></div>
                 </div>
