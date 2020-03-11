@@ -13,7 +13,7 @@ class Asset(object):
         self.name = name
         self.version = version
         self.author = author
-        self.tags = tags
+        self.tags = tags.split(',')
         self.asset_path = asset_path
         self.screenshot_path = screenshot_path
 
