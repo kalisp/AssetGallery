@@ -13,14 +13,14 @@
               {{ form.hidden_tag() }}
               <div class="form-group">
                 <label for="user_name">{{form.user_name.label}}</label>
-                  {{form.user_name(size=32)}}
+                  {{form.user_name(size=32, class_="form-control")}}
                   {% for error in form.user_name.errors %}
                     <span style="color: red;">[{{ error }}]</span>
                   {% endfor %}
               </div>
               <div class="form-group">
                 <label for="password">{{form.password.label}}</label>
-                  {{form.password(size=32)}}
+                  {{form.password(size=32, class_="form-control")}}
                   {% for error in form.password.errors %}
                     <span style="color: red;">[{{ error }}]</span>
                   {% endfor %}
