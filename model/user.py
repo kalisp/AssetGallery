@@ -16,20 +16,22 @@ class User(UserMixin):
     def hash_password(self, password):
         return generate_password_hash(password)
 
-    def check_password(self, stored_password, password):
+    def check_password(self, stored_password, password): # TODO refactore
         ''' Compare 'stored_password' hash with hash of 'password' '''
         return check_password_hash(stored_password, password)
 
     def save(self, user_table):
         ''' Persist user to 'user_table' '''
+        self.id = str(uuid.uuid1())
         user_table.put_item(
             Item={
-                'id': str(uuid.uuid1()),
+                'id': self.id,
                 'user_name' : self.user_name,
                 'password'  : self.hash_password(self.password),
                 'email'     : self.email
             }
         )
+
 
     @classmethod
     def get_user(cls, user_table, user_name):
@@ -60,3 +62,12 @@ class User(UserMixin):
 
         return User(data['user_name'], data['password'], data['email'], data['id'])
 
+    def to_dict(self):
+        ''' Json representation of User - for API access '''
+        data = {
+            'id'    : self.id,
+            'user_name' : self.user_name,
+            #'password'  : self.password, # no real reason why to expose password for now
+            'email'     : self.email
+        }
+        return data

@@ -18,3 +18,18 @@ class Asset(object):
         self.screenshot_path = screenshot_path
 
         self.last_updated = datetime.datetime.utcnow().isoformat()
+
+    def to_dict(self):
+        ''' Json representation of Asset - for API access '''
+        data = {
+            'id'                : self.id,
+            'name'              : self.name,
+            'version'           : self.version,
+            'author'            : self.author,
+            'tags'              : self.tags,
+            'asset_path'        : self.asset_path,
+            'screenshot_path'   : self.screenshot_path,
+            'last_updated'      : self.last_updated
+        }
+
+        return data
