@@ -3,6 +3,8 @@ from dynamoDB import create_table
 from config import Config
 from flask import Flask
 
+''' Purge script for removing all assets from DynamoDB and S3 '''
+
 # for deleting tables on Win localhost
 import os
 from dateutil import tz
@@ -38,7 +40,7 @@ create_table.create_user_table(dynamodb)
 
 s3 = boto3.resource('s3')
 bucket = s3.Bucket(app.config['FLASKS3_BUCKET_NAME'])
-print('Deleting screenshots folder')
-bucket.objects.filter(Prefix="screenshots/").delete()
-print('Deleting assets folder')
-bucket.objects.filter(Prefix="assets/").delete()
+for key in bucket.objects.all():
+        if key.key.startswith('screenshots/') or key.key.startswith('assets/'):
+            print("Deleting {}".format(key.key))
+            key.delete()

@@ -5,9 +5,11 @@ class Asset(object):
     ''' Model of asset, stored in DynamoDB.
         Stores metadata, links for its screenshot and asset file
     '''
-    def __init__(self, id = str(uuid.uuid1()), name = None, author = None, area = None, version = 1,
+    def __init__(self, id = None, name = None, author = None, area = None, version = 1,
                  tags = None, asset_path = None, screenshot_path = None):
         #super().__init__()
+        if id is None:
+            id = str(uuid.uuid1())
 
         self.id = id
         self.name = name
